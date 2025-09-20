@@ -40,7 +40,7 @@ private:
 public:
     Reservation(string user) : userName(user) {}
     int searchTrain(int id, vector<Train> &trains) {
-        for (int i = 0; i < trains.size(); ++i) {
+        for (int i = 0; i < trains.size(); i++) {
             if (trains[i].getId() == id && trains[i].isAvailable()) {
                 trains[i].display();
                 return i;
@@ -93,14 +93,15 @@ public:
     }
 };
 
-vector<User> users;
-vector<Train> availableTrains;
-
-void initializeTrains() {
-    availableTrains.push_back(Train(101, "Kolkata", "Delhi", true));
-    availableTrains.push_back(Train(102, "Mumbai", "Chennai", true));
-    availableTrains.push_back(Train(103, "Delhi", "Bangalore", true));
-}
+vector<User> users = {
+    // default user
+    {User(101, "Ram", "123")}
+};
+vector<Train> availableTrains = {
+    {Train(101, "Kolkata", "Delhi", true)}, 
+    {Train(102, "Mumbai", "Chennai", true)}, 
+    {Train(103, "Delhi", "Bangalore", true)}
+};
 
 void registerUser(vector<User> &users) {
     int id; string name, password;
@@ -150,7 +151,7 @@ void RailwaySystem() {
             if (userId != -1) {
                 int choice2;
                 do {
-                    cout << "\n1. View Available Trains\n2. Book Train\n3. View My Bookings\n4. Logout\nEnter your choice: ";
+                    cout << "\n1. View Available Trains\n2. Book Train\n3. View My Bookings\n4. Logout\n5. Exit\nEnter your choice: ";
                     cin >> choice2;
                     if (choice2 == 1) {
                         for (auto &t : availableTrains) t.display();
@@ -163,7 +164,7 @@ void RailwaySystem() {
                         res->calculateFare();
                         res->bookTrain(tid, availableTrains);
                         res->displayBookingDetails(); 
-                        for (int i = 0; i < users.size(); ++i) {
+                        for (int i = 0; i < users.size(); i++) {
                             if (users[i].getId() == userId) {
                                 users[i].addBooking(tid, tid);
                             }
@@ -174,6 +175,10 @@ void RailwaySystem() {
                             if (u.getId() == userId) u.viewBookings();
                         }
                     }
+                    else if(choice2 == 5){
+                        cout<<"Program Exitted successfully.....";
+                        exit(0);
+                    }
                 } while (choice2 != 4);
             }
         }
@@ -181,7 +186,6 @@ void RailwaySystem() {
 }
 
 int main() {
-    initializeTrains();
     RailwaySystem();
     return 0;
 }
