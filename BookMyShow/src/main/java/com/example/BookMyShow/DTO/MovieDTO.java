@@ -1,28 +1,22 @@
-package com.example.BookMyShow.Model;
+package com.example.BookMyShow.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="movies")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Movie {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+public class MovieDTO {
     private Long id;
-
-    @Column(nullable = false)
     private String title;
-
     private String description;
     private String language;
     private String genre;
     private Integer durationMins;
     private String releaseDate;
     private String posterUrl;
+
+    public MovieDTO(Long id, String title, String description, String language, String genre, Integer durationMins, String posterUrl) {
+    }
 }
