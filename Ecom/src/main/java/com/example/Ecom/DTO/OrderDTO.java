@@ -1,7 +1,5 @@
 package com.example.Ecom.DTO;
 
-import com.example.Ecom.Model.OrderItem;
-
 import java.time.LocalDateTime;
 import java.util.List;
 

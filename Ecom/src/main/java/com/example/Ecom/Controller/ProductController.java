@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 @CrossOrigin("*")
 public class ProductController {
 
@@ -32,7 +32,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id){
-         productService.deleteProd(id);
+        productService.deleteProd(id);
     }
 
 
