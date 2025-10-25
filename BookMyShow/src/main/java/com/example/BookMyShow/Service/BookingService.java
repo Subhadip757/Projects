@@ -90,7 +90,7 @@ public class BookingService {
         return mapToBookingDto(booking, seats);
     }
 
-    private BookingDTO getBookingByNumber(String bookingNumber){
+    public BookingDTO getBookingByNumber(String bookingNumber){
         Booking booking = bookingRepository.findByBookingNumber(bookingNumber)
                 .orElseThrow(()->new ResourceNotFound("Booking not found!!"));
         List<ShowSeat> seats = showSeatRepository.findAll()
@@ -101,7 +101,7 @@ public class BookingService {
         return mapToBookingDto(booking, seats);
     }
 
-    private List<BookingDTO> getBookingByUser(Long id){
+    public List<BookingDTO> getBookingByUser(Long id){
         List<Booking> bookings = bookingRepository.findByUserId(id);
 
         return bookings.stream().map(booking -> {

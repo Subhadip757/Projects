@@ -45,7 +45,7 @@ public class TheatreService {
     }
 
     // Update
-    public TheatreDTO updateTheatre(TheatreDTO newTheatreDto, Long id){
+    public TheatreDTO updateTheatre(Long id, TheatreDTO newTheatreDto){
         Theatre theatre = theatreRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound("Theatre not found with id " + id));
 
